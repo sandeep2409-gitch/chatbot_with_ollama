@@ -1,46 +1,55 @@
-const chatBox = document.getElementById('chat-box');
-const userInput = document.getElementById('user-input');
-const sendBtn = document.getElementById('send-btn');
+document.getElementById("send-btn").addEventListener("click", sendMessage);
+document.getElementById("user-input").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") sendMessage();
+});
 
 async function sendMessage() {
-  const message = userInput.value.trim();
+  const input = document.getElementById("user-input");
+  const chatBox = document.getElementById("chat-box");
+  const message = input.value.trim();
   if (!message) return;
 
-  appendMessage(message, 'user');
-  userInput.value = '';
 
-  appendMessage('Thinking...', 'bot', true);
+  appendMessage("user", message);
+  input.value = "";
+  chatBox.scrollTop = chatBox.scrollHeight;
 
-  const response = await fetch('/chat', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message })
+  
+  const res = await fetch("/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message }),
   });
 
-  const data = await response.json();
+  const data = await res.json();
+  const botReply = data.reply || "No response received.";
+  appendMessage("bot", botReply);
+}
 
-  // 🧠 Render Markdown + highlight code
-  const html = marked.parse(data.reply);
-  const botMsg = document.querySelector('.bot:last-child');
-  botMsg.innerHTML = html;
+function appendMessage(sender, text) {
+  const chatBox = document.getElementById("chat-box");
+  const msg = document.createElement("div");
+  msg.className = `message ${sender}`;
 
-  // Apply syntax highlighting
-  botMsg.querySelectorAll('pre code').forEach((block) => {
-    hljs.highlightElement(block);
-  });
+  if (sender === "bot") {
+ 
+    const html = marked.parse(text);
+    msg.innerHTML = `${html}<button class="copy-btn" onclick="copyText(this)">Copy</button>`;
+    chatBox.appendChild(msg);
 
+    
+    msg.querySelectorAll("pre code").forEach((block) => hljs.highlightElement(block));
+  } else {
+    msg.textContent = text;
+  }
+
+  chatBox.appendChild(msg);
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-function appendMessage(content, sender, isTemp = false) {
-  const div = document.createElement('div');
-  div.classList.add('message', sender);
-  div.innerHTML = content;
-  chatBox.appendChild(div);
-  chatBox.scrollTop = chatBox.scrollHeight;
+function copyText(button) {
+  const text = button.parentElement.textContent.replace("Copy", "").trim();
+  navigator.clipboard.writeText(text);
+  button.textContent = "Copied!";
+  setTimeout(() => (button.textContent = "Copy"), 1500);
 }
-
-sendBtn.addEventListener('click', sendMessage);
-userInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') sendMessage();
-});
