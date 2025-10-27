@@ -9,21 +9,25 @@ app = FastAPI()
 
 app.mount("/web", StaticFiles(directory="web", html=True), name="web")
 
+
 @app.get("/", response_class=HTMLResponse)
 async def root():
+    """Serves the main chat webpage"""
     with open("web/index.html") as f:
         return HTMLResponse(content=f.read())
 
+
 @app.post("/chat")
 async def chat(request: Request):
+    """Handles chat requests and communicates with Ollama"""
     data = await request.json()
     user_message = data.get("message", "")
 
-    
     try:
+
         response = requests.post(
             "http://host.docker.internal:11434/api/generate",
-            json={"model": "jarvis", "prompt": user_message},
+            json={"model": "llama3.2:3b", "prompt": user_message},
             stream=True,
             timeout=120
         )
