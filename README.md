@@ -9,7 +9,7 @@
 
 ---
 
-## 🧩 Overview
+## Overview
 **Offline Jarvis** is a lightweight AI chatbot that runs completely **offline** using  
 **[FastAPI](https://fastapi.tiangolo.com/)** for the backend and **[Ollama](https://ollama.com/)** for local LLM inference.  
 It uses **Llama 3.2:3B** (or any Ollama-supported model) and features a clean, minimal **web interface**.
@@ -18,24 +18,24 @@ Perfect for developers who want an offline ChatGPT-like assistant!
 
 ---
 
-## ✨ Features
-- 💬 Modern and responsive **chat interface**
-- ⚙️ **FastAPI** backend with `/chat` endpoint
-- 🧱 **Runs entirely offline** — no API keys or cloud calls
-- 🧠 Powered by **Ollama** (supports Gemma, Llama, Phi, etc.)
-- 📋 Copy-to-clipboard for AI responses
-- 🪶 Markdown + Syntax highlighting for code blocks
-- 🐳 One-command **Docker deployment**
+## Features
+- Modern and responsive **chat interface**
+- **FastAPI** backend with `/chat` endpoint
+- **Runs entirely offline** — no API keys or cloud calls
+- Powered by **Ollama** (supports Gemma, Llama, Phi, etc.)
+- Copy-to-clipboard for AI responses
+- Markdown + Syntax highlighting for code blocks
+- One-command **Docker deployment**
 
 ---
 
 
 ## ⚙️ Requirements
 Before you start, make sure you have:
-- 🐍 **Python 3.10+** (optional if not using Docker)
-- 🐋 **Docker** installed  
-- 🤖 **Ollama** installed and running locally  
-- 🧠 Model pulled (e.g., `llama3.2:3b`)
+- **Python 3.10+**
+- **Docker** installed  
+- **Ollama** installed and running locally  
+- Model pulled 
 
 ### Pull the Model:
 
@@ -45,9 +45,9 @@ ollama pull llama3.2:3b
 If you want a different model (like gemma:2b or phi3), replace the model name accordingly.
 ---
 
-## 🚀 Setup and Run
+## Setup and Run
 
-🧱 Step 1 — Build the Docker Image
+Step 1 — Build the Docker Image
 
 Run this command in the project root (where your Dockerfile and app.py are located):
 ```bash
@@ -59,7 +59,7 @@ This command:
 
 ⸻
 
-## ▶️ Step 2 — Run the Container
+## Step 2 — Run the Container
 
 Once the image is built, start your container:
 ```bash
@@ -77,12 +77,12 @@ Explanation:
 
 Once the container is running, open your browser and visit:
 
-👉 http://localhost:8000/web
+http://localhost:8000/web
 
-You’ll see your Offline Jarvis chatbot ready to chat 💬
-### 🧱 Troubleshooting
+You’ll see your Offline Jarvis chatbot ready to chat
+### Troubleshooting
 
-❌ Container name already in use
+Container name already in use
 ```bash
 docker rm -f offline-jarvis
 ```
@@ -90,20 +90,20 @@ docker rm -f offline-jarvis
 ```bash
 ollama serve
 ```
-### 👨‍💻 Author
+###  Author
 
 ### Sandeep manchinasetti
-💡 Built with ❤️ using FastAPI, Ollama, and Docker
+Built with  using FastAPI, Ollama, and Docker
 
 ⸻
 
-### 📝 License
+### License
 
 This project is licensed under the MIT License — feel free to use, modify, and share.
 
 ⸻
 
-⭐ Star this repo if you found it helpful!
+Star this repo if you found it helpful!
 
 
 
