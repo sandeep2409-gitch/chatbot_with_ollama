@@ -35,14 +35,16 @@ Before you start, make sure you have:
 - **Python 3.10+**
 - **Docker** installed  
 - **Ollama** installed and running locally  
-- Model pulled 
+- Model pulled
+- Minimum 8gb of ram required
+- ~~10 gb of storage is required
 
 ### Pull the Model:
 
 ```bash
 ollama pull llama3.2:3b
 ```
-If you want a different model (like gemma:2b or phi3), replace the model name accordingly.
+If you want a different model , replace the model name accordingly.
 ---
 
 ## Setup and Run
