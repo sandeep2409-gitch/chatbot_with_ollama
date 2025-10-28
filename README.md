@@ -30,7 +30,7 @@ Perfect for developers who want an offline ChatGPT-like assistant!
 ---
 
 
-## ⚙️ Requirements
+## Requirements
 Before you start, make sure you have:
 - **Python 3.10+**
 - **Docker** installed  
