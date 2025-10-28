@@ -1,4 +1,4 @@
-#  Jarvis  
+#  J.A.R.V.I.S 
 ### Your Personal Offline AI Assistant (FastAPI + Ollama + Docker)
 
 ![Jarvis Banner](https://img.shields.io/badge/Project-Offline%20Jarvis-blue?style=for-the-badge)
